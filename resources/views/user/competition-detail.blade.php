@@ -214,7 +214,13 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         @foreach($otherCompetitions as $other)
-                            <div class="p-6 rounded-2xl bg-white border-2 border-brand-100 hover:border-brand-500 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-lg flex flex-col justify-between group">
+                            <div 
+                                onclick="window.location='{{ route('competitions.show', $other['slug']) }}'"
+                                onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); window.location='{{ route('competitions.show', $other['slug']) }}';}"
+                                tabindex="0"
+                                role="link"
+                                aria-label="Lihat detail kategori {{ $other['name'] }}"
+                                class="p-6 rounded-2xl bg-white border-2 border-brand-100 hover:border-brand-500 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-lg flex flex-col justify-between group cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2">
                                 <div>
                                     <!-- Preview Image with Fallback -->
                                     <div class="aspect-video w-full rounded-xl overflow-hidden bg-brand-50 border border-brand-100 mb-4 relative">
@@ -245,6 +251,7 @@
                                     </p>
                                 </div>
                                 <a href="{{ route('competitions.show', $other['slug']) }}" 
+                                   onclick="event.stopPropagation();"
                                    class="pt-3 border-t border-brand-100 text-xs font-bold text-brand-600 group-hover:text-brand-700 flex items-center justify-between">
                                     <span>Lihat Detail Kategori</span>
                                     <span class="group-hover:translate-x-1 transition-transform">→</span>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,42 +11,115 @@
 
     <style>
         /* State pilihan dikendalikan lewat aria-pressed */
-        .method-btn[aria-pressed="true"] { border: 2px solid #044A9C; background: #eff6ff; }
-        .method-btn[aria-pressed="false"] { border: 1px solid #cbd5e1; background: #fff; }
-        .method-btn[aria-pressed="false"]:hover { border-color: #044A9C; }
-        .method-btn[aria-pressed="true"] .icon-box { background: #044A9C; color: #fff; }
-        .method-btn[aria-pressed="false"] .icon-box { background: #f1f5f9; color: #475569; }
+        .method-btn[aria-pressed="true"] {
+            border: 2px solid #044A9C;
+            background: #eff6ff;
+        }
 
-        .sub-btn[aria-pressed="true"] { border: 2px solid #044A9C; background: #eff6ff; color: #0f172a; }
-        .sub-btn[aria-pressed="false"] { border: 1px solid #cbd5e1; background: #fff; color: #334155; }
-        .sub-btn[aria-pressed="false"]:hover { border-color: #044A9C; }
+        .method-btn[aria-pressed="false"] {
+            border: 1px solid #cbd5e1;
+            background: #fff;
+        }
+
+        .method-btn[aria-pressed="false"]:hover {
+            border-color: #044A9C;
+        }
+
+        .method-btn[aria-pressed="true"] .icon-box {
+            background: #044A9C;
+            color: #fff;
+        }
+
+        .method-btn[aria-pressed="false"] .icon-box {
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        .sub-btn[aria-pressed="true"] {
+            border: 2px solid #044A9C;
+            background: #eff6ff;
+            color: #0f172a;
+        }
+
+        .sub-btn[aria-pressed="false"] {
+            border: 1px solid #cbd5e1;
+            background: #fff;
+            color: #334155;
+        }
+
+        .sub-btn[aria-pressed="false"]:hover {
+            border-color: #044A9C;
+        }
 
         @keyframes reveal-registration-form {
-            from { opacity: .55; transform: translateX(-2rem); }
-            to { opacity: 1; transform: translateX(0); }
+            from {
+                opacity: .55;
+                transform: translateX(-2rem);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         @keyframes subtle-pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
         }
+
         .animate-subtle-pulse {
             animation: subtle-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
 
         @keyframes spin-slow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
+
         .animate-spin-slow {
             animation: spin-slow 8s linear infinite;
         }
 
         @media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
-            .registration-panel { animation: reveal-registration-form .6s cubic-bezier(.22, 1, .36, 1) .05s both; }
+            .registration-panel {
+                animation: reveal-registration-form .6s cubic-bezier(.22, 1, .36, 1) .05s both;
+            }
+        }
+
+        /* Custom Scrollbar untuk kontainer form peserta */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 9999px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
         }
     </style>
 </head>
+
 <body class="min-h-screen bg-slate-50 font-sans text-slate-800 antialiased selection:bg-[#044A9C] selection:text-white">
 
     @php
@@ -60,26 +134,39 @@
         <div class="grid min-h-screen md:grid-cols-2 md:items-start">
 
             {{-- ================= SISI KIRI ================= --}}
-            <div class="relative isolate flex min-h-[440px] flex-col overflow-hidden bg-[#044A9C] p-8 text-white sm:p-10 md:sticky md:top-0 md:z-20 md:h-screen md:min-h-0 md:bg-white md:pr-20 lg:p-12 lg:pr-24">
+            <div
+                class="relative isolate flex min-h-[440px] flex-col overflow-hidden bg-[#044A9C] p-8 text-white sm:p-10 md:sticky md:top-0 md:z-20 md:h-screen md:min-h-0 md:bg-white md:pr-20 lg:p-12 lg:pr-24">
 
                 {{-- Tepi bergelombang pemisah kiri & kanan (hanya md ke atas) --}}
-                <svg aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 hidden h-full w-full md:block" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <svg aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 hidden h-full w-full md:block"
+                    viewBox="0 0 100 100" preserveAspectRatio="none">
                     <defs>
                         <linearGradient id="panel-blue" x1="0" y1="0" x2="1" y2="1">
                             <stop offset="0%" stop-color="#0A5CBA" />
                             <stop offset="55%" stop-color="#044A9C" />
                             <stop offset="100%" stop-color="#033777" />
                         </linearGradient>
-                        <pattern id="panel-dots" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".22" fill="#fff" fill-opacity=".18" /></pattern>
+                        <pattern id="panel-dots" width="4" height="4" patternUnits="userSpaceOnUse">
+                            <circle cx="1" cy="1" r=".22" fill="#fff" fill-opacity=".18" />
+                        </pattern>
                     </defs>
-                    <path d="M0 0H77C82 0 84 4 86 10C90 22 94 35 97 46C100 56 98 61 91 67C83 74 77 79 71 85C66 90 66 95 72 100H0Z" fill="url(#panel-blue)" />
-                    <path d="M0 0H77C82 0 84 4 86 10C90 22 94 35 97 46C100 56 98 61 91 67C83 74 77 79 71 85C66 90 66 95 72 100H0Z" fill="url(#panel-dots)" />
-                    <path d="M-8 69C16 57 29 75 52 62S77 49 91 57" fill="none" stroke="#fff" stroke-opacity=".14" stroke-width=".35" />
-                    <path d="M-8 76C15 64 30 82 53 69S78 56 94 64" fill="none" stroke="#fff" stroke-opacity=".1" stroke-width=".35" />
+                    <path
+                        d="M0 0H77C82 0 84 4 86 10C90 22 94 35 97 46C100 56 98 61 91 67C83 74 77 79 71 85C66 90 66 95 72 100H0Z"
+                        fill="url(#panel-blue)" />
+                    <path
+                        d="M0 0H77C82 0 84 4 86 10C90 22 94 35 97 46C100 56 98 61 91 67C83 74 77 79 71 85C66 90 66 95 72 100H0Z"
+                        fill="url(#panel-dots)" />
+                    <path d="M-8 69C16 57 29 75 52 62S77 49 91 57" fill="none" stroke="#fff" stroke-opacity=".14"
+                        stroke-width=".35" />
+                    <path d="M-8 76C15 64 30 82 53 69S78 56 94 64" fill="none" stroke="#fff" stroke-opacity=".1"
+                        stroke-width=".35" />
                 </svg>
 
                 {{-- Dekorasi statis: jalur sirkuit bertema robotik --}}
-                <svg aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 h-full w-full text-white md:w-[76%]" viewBox="0 0 400 800" preserveAspectRatio="xMinYMax slice" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <svg aria-hidden="true"
+                    class="pointer-events-none absolute inset-0 -z-10 h-full w-full text-white md:w-[76%]"
+                    viewBox="0 0 400 800" preserveAspectRatio="xMinYMax slice" fill="none" stroke="currentColor"
+                    stroke-linecap="round" stroke-linejoin="round">
                     <g stroke-opacity=".16" stroke-width="1.5">
                         <path d="M0 560H70L100 590H190L215 615H290" />
                         <path d="M0 595H48L78 625H150L175 650H250" />
@@ -100,15 +187,20 @@
                 </svg>
 
                 {{-- Lingkaran dekoratif (statis) --}}
-                <div aria-hidden="true" class="pointer-events-none absolute -bottom-24 -left-20 -z-10 h-72 w-72 rounded-full bg-white/10"></div>
-                <div aria-hidden="true" class="pointer-events-none absolute -top-16 right-1/4 -z-10 h-40 w-40 rounded-full border border-white/15"></div>
+                <div aria-hidden="true"
+                    class="pointer-events-none absolute -bottom-24 -left-20 -z-10 h-72 w-72 rounded-full bg-white/10">
+                </div>
+                <div aria-hidden="true"
+                    class="pointer-events-none absolute -top-16 right-1/4 -z-10 h-40 w-40 rounded-full border border-white/15">
+                </div>
 
                 {{-- Tombol Navigasi Kembali --}}
                 <div class="mb-4">
-                    <a href="{{ isset($competition['slug']) ? route('competitions.show', $competition['slug']) : route('home') }}" 
-                       class="inline-flex items-center gap-2 text-xs font-bold text-blue-100 hover:text-white bg-white/10 hover:bg-white/20 px-3.5 py-1.5 rounded-lg transition-colors border border-white/15">
+                    <a href="{{ isset($competition['slug']) ? route('competitions.show', $competition['slug']) : route('home') }}"
+                        class="inline-flex items-center gap-2 text-xs font-bold text-blue-100 hover:text-white bg-white/10 hover:bg-white/20 px-3.5 py-1.5 rounded-lg transition-colors border border-white/15">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                         </svg>
                         <span>Kembali ke Detail Lomba</span>
                     </a>
@@ -117,12 +209,18 @@
                 {{-- Judul --}}
                 <div class="mt-2 sm:mt-4">
                     <div class="mb-3 flex items-center gap-2 flex-wrap">
-                        <span class="inline-flex items-center gap-1.5 rounded-md bg-white/15 px-2.5 py-1 text-xs font-semibold text-blue-100 backdrop-blur-sm border border-white/10">
-                            <svg aria-hidden="true" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="11" rx="2"/><path d="M12 8V4M9 13h.01M15 13h.01M3 13v2m18-2v2"/></svg>
+                        <span
+                            class="inline-flex items-center gap-1.5 rounded-md bg-white/15 px-2.5 py-1 text-xs font-semibold text-blue-100 backdrop-blur-sm border border-white/10">
+                            <svg aria-hidden="true" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="5" y="8" width="14" height="11" rx="2" />
+                                <path d="M12 8V4M9 13h.01M15 13h.01M3 13v2m18-2v2" />
+                            </svg>
                             Kategori {{ $competition['type'] ?? 'Tim' }}
                         </span>
                         @if(isset($competition['category_badge']))
-                            <span class="inline-flex items-center rounded-md bg-amber-400/20 px-2.5 py-1 text-xs font-semibold text-amber-200 backdrop-blur-sm border border-amber-300/20">
+                            <span
+                                class="inline-flex items-center rounded-md bg-amber-400/20 px-2.5 py-1 text-xs font-semibold text-amber-200 backdrop-blur-sm border border-amber-300/20">
                                 {{ $competition['category_badge'] }}
                             </span>
                         @endif
@@ -136,13 +234,19 @@
                 </div>
 
                 {{-- Satu kartu info tetap di bawah judul; isinya mengikuti fase & metode pembayaran --}}
-                <div class="mt-6 flex min-h-[180px] max-w-md flex-col justify-center rounded-xl border border-white/30 bg-white/10 p-5 backdrop-blur-sm">
+                <div
+                    class="mt-6 flex min-h-[180px] max-w-md flex-col justify-center rounded-xl border border-white/30 bg-white/10 p-5 backdrop-blur-sm">
                     {{-- Info default saat Fase 1 (Data Tim/Peserta) --}}
                     <div id="info-step1">
-                        <p class="text-xs font-semibold uppercase tracking-wider text-blue-100">Informasi Pendaftaran</p>
-                        <p class="mt-2 text-base font-bold">{{ $competition['team_size'] ?? ($isTeam ? 'Tim (2-3 Orang)' : 'Individu (1 Orang)') }}</p>
+                        <p class="text-xs font-semibold uppercase tracking-wider text-blue-100">Informasi Pendaftaran
+                        </p>
+                        <p class="mt-2 text-base font-bold">
+                            {{ $competition['team_size'] ?? ($isTeam ? 'Tim (2-3 Orang)' : 'Individu (1 Orang)') }}
+                        </p>
                         <p class="mt-2 text-sm leading-6 text-white/90">
-                            Biaya registrasi: <strong class="text-white font-bold">{{ $unitPriceFormatted }}</strong> per {{ $isTeam ? 'tim' : 'peserta' }}. Silakan lengkapi data formulir di samping untuk melanjutkan ke pembayaran.
+                            Biaya registrasi: <strong class="text-white font-bold">{{ $unitPriceFormatted }}</strong>
+                            per {{ $isTeam ? 'tim' : 'peserta' }}. Silakan lengkapi data formulir di samping untuk
+                            melanjutkan ke pembayaran.
                         </p>
                     </div>
 
@@ -150,76 +254,101 @@
                     <div id="info-auto" class="hidden">
                         <p class="text-xs font-semibold uppercase tracking-wider text-blue-100">Pembayaran otomatis</p>
                         <p class="mt-2 text-base font-bold">Pembayaran dilanjutkan melalui Midtrans</p>
-                        <p class="mt-2 text-sm leading-6 text-white/90">Setelah menekan Bayar Sekarang, kamu akan diarahkan ke Midtrans untuk memilih metode (VA, QRIS, GoPay) dan menyelesaikan pembayaran secara instan.</p>
+                        <p class="mt-2 text-sm leading-6 text-white/90">Setelah menekan Bayar Sekarang, kamu akan
+                            diarahkan ke Midtrans untuk memilih metode (VA, QRIS, GoPay) dan menyelesaikan pembayaran
+                            secara instan.</p>
                     </div>
 
                     {{-- Info saat Fase 2: Manual > Transfer --}}
                     <div id="info-transfer" class="hidden">
-                        <p class="text-xs font-semibold uppercase tracking-wider text-blue-100">Transfer ke rekening panitia</p>
+                        <p class="text-xs font-semibold uppercase tracking-wider text-blue-100">Transfer ke rekening
+                            panitia</p>
                         <p id="bank-name" class="mt-2 text-base font-bold">Bank BCA</p>
                         <div class="mt-3 flex items-center justify-between gap-3">
                             <p id="bank-number" class="font-mono text-2xl font-bold tracking-wider">1234 5678 90</p>
-                            <button type="button" id="copy-rek" class="rounded-lg border border-white/40 px-3 py-1.5 text-xs font-semibold text-white hover:bg-white/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70">Salin</button>
+                            <button type="button" id="copy-rek"
+                                class="rounded-lg border border-white/40 px-3 py-1.5 text-xs font-semibold text-white hover:bg-white/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70">Salin</button>
                         </div>
-                        <p class="mt-3 border-t border-white/20 pt-3 text-xs text-blue-100">a.n. Panitia Sukabumi Robotic Competition 2026</p>
+                        <p class="mt-3 border-t border-white/20 pt-3 text-xs text-blue-100">a.n. Panitia Sukabumi
+                            Robotic Competition 2026</p>
                     </div>
 
                     {{-- Info saat Fase 2: Manual > Cash --}}
                     <div id="info-cash" class="hidden">
                         <p class="text-xs font-semibold uppercase tracking-wider text-blue-100">Pembayaran tunai</p>
                         <p class="mt-2 text-base font-bold">Bayar langsung ke panitia</p>
-                        <p class="mt-2 text-sm leading-6 text-white/90">Silakan lakukan pembayaran tunai ke meja registrasi panitia saat konfirmasi pendaftaran lomba.</p>
+                        <p class="mt-2 text-sm leading-6 text-white/90">Silakan lakukan pembayaran tunai ke meja
+                            registrasi panitia saat konfirmasi pendaftaran lomba.</p>
                     </div>
                 </div>
             </div>
 
             {{-- ================= SISI KANAN ================= --}}
-            <div class="registration-panel relative isolate z-0 flex min-h-screen flex-col justify-start overflow-hidden bg-white p-6 sm:p-10 md:z-10 lg:p-12">
+            <div
+                class="registration-panel relative isolate z-0 flex min-h-screen flex-col justify-start overflow-hidden bg-white p-6 sm:p-10 md:z-10 lg:p-12">
 
                 {{-- Hiasan background halus (statis) --}}
-                <div aria-hidden="true" class="pointer-events-none absolute right-0 top-0 -z-10 h-56 w-56 bg-[radial-gradient(#044A9C33_1px,transparent_1px)] [background-size:14px_14px] [mask-image:radial-gradient(circle_at_top_right,#000,transparent_70%)]"></div>
-                <div aria-hidden="true" class="pointer-events-none absolute -bottom-24 -right-24 -z-10 h-64 w-64 rounded-full bg-blue-50"></div>
-                <div aria-hidden="true" class="pointer-events-none absolute -bottom-10 -right-10 -z-10 h-40 w-40 rounded-full border border-blue-100"></div>
-                <svg aria-hidden="true" class="pointer-events-none absolute bottom-0 left-0 -z-10 h-24 w-full text-[#044A9C]/10" viewBox="0 0 400 100" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.2">
+                <div aria-hidden="true"
+                    class="pointer-events-none absolute right-0 top-0 -z-10 h-56 w-56 bg-[radial-gradient(#044A9C33_1px,transparent_1px)] [background-size:14px_14px] [mask-image:radial-gradient(circle_at_top_right,#000,transparent_70%)]">
+                </div>
+                <div aria-hidden="true"
+                    class="pointer-events-none absolute -bottom-24 -right-24 -z-10 h-64 w-64 rounded-full bg-blue-50">
+                </div>
+                <div aria-hidden="true"
+                    class="pointer-events-none absolute -bottom-10 -right-10 -z-10 h-40 w-40 rounded-full border border-blue-100">
+                </div>
+                <svg aria-hidden="true"
+                    class="pointer-events-none absolute bottom-0 left-0 -z-10 h-24 w-full text-[#044A9C]/10"
+                    viewBox="0 0 400 100" preserveAspectRatio="none" fill="none" stroke="currentColor"
+                    stroke-width="1.2">
                     <path d="M0 70C60 40 110 95 180 65S320 40 400 70" />
                     <path d="M0 85C70 58 120 108 190 80S330 56 400 84" />
                 </svg>
 
                 <div class="mb-6 flex items-center justify-between">
                     <h2 class="text-xl font-bold text-slate-900 sm:text-2xl">Checkout Pendaftaran</h2>
-                    <a href="{{ isset($competition['slug']) ? route('competitions.show', $competition['slug']) : route('home') }}" class="grid h-8 w-8 place-items-center rounded-full border border-slate-300 text-sm text-slate-500 hover:bg-slate-100 transition-colors" aria-label="Tutup Checkout">×</a>
+                    <a href="{{ isset($competition['slug']) ? route('competitions.show', $competition['slug']) : route('home') }}"
+                        class="grid h-8 w-8 place-items-center rounded-full border border-slate-300 text-sm text-slate-500 hover:bg-slate-100 transition-colors"
+                        aria-label="Tutup Checkout">×</a>
                 </div>
 
                 {{-- STEPPER --}}
-                <nav aria-label="Langkah pembayaran" class="mb-7 rounded-xl border border-slate-200 bg-slate-50 px-4 py-4 sm:px-5">
+                <nav aria-label="Langkah pembayaran"
+                    class="mb-7 rounded-xl border border-slate-200 bg-slate-50 px-4 py-4 sm:px-5">
                     <ol class="flex items-start">
                         {{-- Step 1 --}}
                         <li class="flex flex-1 flex-col items-center text-center" id="stepper-step-1">
                             <div class="flex w-full items-center">
                                 <span class="flex-1"></span>
-                                <span id="stepper-step-1-badge" class="grid h-9 w-9 place-items-center rounded-full border-2 border-[#044A9C] bg-white text-sm font-bold text-[#044A9C]">1</span>
+                                <span id="stepper-step-1-badge"
+                                    class="grid h-9 w-9 place-items-center rounded-full border-2 border-[#044A9C] bg-white text-sm font-bold text-[#044A9C]">1</span>
                                 <span id="stepper-line-1" class="h-0.5 flex-1 bg-slate-300"></span>
                             </div>
-                            <span class="mt-2 text-[11px] font-bold text-slate-900 sm:text-xs">{{ $isTeam ? 'Data Tim' : 'Data Peserta' }}</span>
-                            <span id="step1-status" class="hidden text-[10px] text-[#044A9C] sm:block">Sedang diisi</span>
+                            <span
+                                class="mt-2 text-[11px] font-bold text-slate-900 sm:text-xs">{{ $isTeam ? 'Data Tim' : 'Data Peserta' }}</span>
+                            <span id="step1-status" class="hidden text-[10px] text-[#044A9C] sm:block">Sedang
+                                diisi</span>
                         </li>
 
                         {{-- Step 2 --}}
                         <li class="flex flex-1 flex-col items-center text-center" id="stepper-step-2">
                             <div class="flex w-full items-center">
                                 <span id="stepper-line-2-left" class="h-0.5 flex-1 bg-slate-300"></span>
-                                <span id="stepper-step-2-badge" class="grid h-9 w-9 place-items-center rounded-full border-2 border-slate-300 bg-white text-sm font-bold text-slate-400">2</span>
+                                <span id="stepper-step-2-badge"
+                                    class="grid h-9 w-9 place-items-center rounded-full border-2 border-slate-300 bg-white text-sm font-bold text-slate-400">2</span>
                                 <span id="stepper-line-2" class="h-0.5 flex-1 bg-slate-300"></span>
                             </div>
                             <span class="mt-2 text-[11px] font-semibold text-slate-500 sm:text-xs">Pembayaran</span>
-                            <span id="step2-status" class="hidden text-[10px] text-slate-400 sm:block">Menunggu data</span>
+                            <span id="step2-status" class="hidden text-[10px] text-slate-400 sm:block">Menunggu
+                                data</span>
                         </li>
 
                         {{-- Step 3 --}}
                         <li class="flex flex-1 flex-col items-center text-center" id="stepper-step-3">
                             <div class="flex w-full items-center">
                                 <span class="h-0.5 flex-1 bg-slate-300"></span>
-                                <span id="stepper-step-3-badge" class="grid h-9 w-9 place-items-center rounded-full border-2 border-slate-300 bg-white text-sm font-bold text-slate-400">3</span>
+                                <span id="stepper-step-3-badge"
+                                    class="grid h-9 w-9 place-items-center rounded-full border-2 border-slate-300 bg-white text-sm font-bold text-slate-400">3</span>
                                 <span class="flex-1"></span>
                             </div>
                             <span class="mt-2 text-[11px] font-medium text-slate-500 sm:text-xs">Konfirmasi</span>
@@ -229,16 +358,18 @@
                 </nav>
 
                 {{-- ======================================================== --}}
-                {{-- FASE 1: FORM DATA TIM / PESERTA                           --}}
+                {{-- FASE 1: FORM DATA TIM / PESERTA --}}
                 {{-- ======================================================== --}}
                 <div id="section-step-1">
                     <div class="mb-5">
-                        <span class="inline-block rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-[#044A9C]">Langkah 1 dari 2</span>
+                        <span
+                            class="inline-block rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-[#044A9C]">Langkah
+                            1 dari 2</span>
                         <h3 class="mt-2 text-lg font-bold text-slate-900 sm:text-xl">
                             {{ $isTeam ? 'Data Tim Peserta' : 'Data Peserta Individu' }}
                         </h3>
                         <p class="mt-1 text-xs sm:text-sm text-slate-500">
-                            {{ $isTeam ? 'Tentukan jumlah tim yang akan didaftarkan. Form akan menyesuaikan jumlahnya secara dinamis.' : 'Tentukan jumlah peserta yang akan didaftarkan. Lengkapi nama peserta dan asal sekolah.' }}
+                            {{ $isTeam ? 'Tentukan jumlah tim yang akan didaftarkan. Masukkan nama tim dan 2 nama anak untuk setiap tim.' : 'Tentukan jumlah peserta yang akan didaftarkan. Masukkan nama anak untuk setiap peserta.' }}
                         </p>
                     </div>
 
@@ -247,9 +378,13 @@
                             {{ $isTeam ? 'Jumlah Tim' : 'Jumlah Peserta' }}
                         </label>
                         <div class="mt-2 flex max-w-xs items-center gap-3">
-                            <button type="button" id="count-down" aria-label="Kurangi jumlah" class="grid h-10 w-10 place-items-center rounded-lg border border-slate-300 bg-white text-lg font-bold text-slate-700 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-[#044A9C]/30 transition">−</button>
-                            <input id="team-count" type="number" min="1" max="30" value="1" class="h-10 w-24 rounded-lg border border-slate-300 bg-white text-center font-bold text-slate-900 focus:border-[#044A9C] focus:outline-none focus:ring-2 focus:ring-[#044A9C]/20" inputmode="numeric">
-                            <button type="button" id="count-up" aria-label="Tambah jumlah" class="grid h-10 w-10 place-items-center rounded-lg border border-slate-300 bg-white text-lg font-bold text-slate-700 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-[#044A9C]/30 transition">+</button>
+                            <button type="button" id="count-down" aria-label="Kurangi jumlah"
+                                class="grid h-10 w-10 place-items-center rounded-lg border border-slate-300 bg-white text-lg font-bold text-slate-700 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-[#044A9C]/30 transition">−</button>
+                            <input id="team-count" type="number" min="1" max="30" value="1"
+                                class="h-10 w-24 rounded-lg border border-slate-300 bg-white text-center font-bold text-slate-900 focus:border-[#044A9C] focus:outline-none focus:ring-2 focus:ring-[#044A9C]/20"
+                                inputmode="numeric">
+                            <button type="button" id="count-up" aria-label="Tambah jumlah"
+                                class="grid h-10 w-10 place-items-center rounded-lg border border-slate-300 bg-white text-lg font-bold text-slate-700 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-[#044A9C]/30 transition">+</button>
                         </div>
                         <p class="mt-2 text-xs text-slate-500">
                             Biaya registrasi {{ $unitPriceFormatted }} per {{ $isTeam ? 'tim' : 'peserta' }}.
@@ -260,58 +395,95 @@
                     <div id="team-fields" class="mt-6 space-y-4"></div>
 
                     {{-- Estimasi Biaya Step 1 --}}
-                    <div class="mt-6 flex items-center justify-between rounded-xl border border-blue-200 bg-blue-50/70 p-4 sm:p-5">
+                    <div
+                        class="mt-6 flex items-center justify-between rounded-xl border border-blue-200 bg-blue-50/70 p-4 sm:p-5">
                         <div>
-                            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Perkiraan total biaya</p>
-                            <p id="step1-price-detail" class="mt-1 text-sm font-bold text-slate-700">1 {{ $isTeam ? 'tim' : 'peserta' }} × {{ $unitPriceFormatted }}</p>
+                            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Perkiraan total
+                                biaya</p>
+                            <p id="step1-price-detail" class="mt-1 text-sm font-bold text-slate-700">1
+                                {{ $isTeam ? 'tim' : 'peserta' }} × {{ $unitPriceFormatted }}
+                            </p>
                         </div>
-                        <p id="step1-price-total" class="text-xl font-black text-[#044A9C]">{{ $unitPriceFormatted }}</p>
+                        <p id="step1-price-total" class="text-xl font-black text-[#044A9C]">{{ $unitPriceFormatted }}
+                        </p>
                     </div>
 
-                    <button type="button" id="btn-to-step-2" class="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-[#044A9C] px-5 py-4 text-sm font-bold text-white shadow-lg shadow-[#044A9C]/20 transition hover:bg-[#033a7c] focus:outline-none focus:ring-2 focus:ring-[#044A9C] focus:ring-offset-2">
+                    <button type="button" id="btn-to-step-2"
+                        class="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-[#044A9C] px-5 py-4 text-sm font-bold text-white shadow-lg shadow-[#044A9C]/20 transition hover:bg-[#033a7c] focus:outline-none focus:ring-2 focus:ring-[#044A9C] focus:ring-offset-2">
                         <span>Lanjut ke Pembayaran</span>
-                        <svg aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        <svg aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
                     </button>
-                    <p id="step1-error" role="alert" class="mt-3 hidden rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 font-medium"></p>
+                    <p id="step1-error" role="alert"
+                        class="mt-3 hidden rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 font-medium">
+                    </p>
                 </div>
 
                 {{-- ======================================================== --}}
-                {{-- FASE 2: PILIHAN METODE PEMBAYARAN & CHECKOUT              --}}
+                {{-- FASE 2: PILIHAN METODE PEMBAYARAN & CHECKOUT --}}
                 {{-- ======================================================== --}}
                 <div id="section-step-2" class="hidden">
                     <div class="mb-5 flex items-center justify-between">
                         <div>
-                            <span class="inline-block rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-[#044A9C]">Langkah 2 dari 2</span>
+                            <span
+                                class="inline-block rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-[#044A9C]">Langkah
+                                2 dari 2</span>
                             <h3 class="mt-1 text-lg font-bold text-slate-900 sm:text-xl">Metode Pembayaran</h3>
                             <p class="text-xs text-slate-500">Pilih cara kamu membayar biaya pendaftaran</p>
                         </div>
-                        <button type="button" id="btn-back-to-step-1" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#044A9C] hover:text-[#033a7c] hover:underline">
-                            <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+                        <button type="button" id="btn-back-to-step-1"
+                            class="inline-flex items-center gap-1.5 text-xs font-bold text-[#044A9C] hover:text-[#033a7c] hover:underline">
+                            <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M15 19l-7-7 7-7" />
+                            </svg>
                             <span>Ubah Data {{ $isTeam ? 'Tim' : 'Peserta' }}</span>
                         </button>
                     </div>
 
                     {{-- Pilihan utama: Otomatis / Manual --}}
                     <div class="grid grid-cols-2 gap-3" role="group" aria-label="Metode pembayaran">
-                        <button type="button" data-method="auto" aria-pressed="true" class="method-btn rounded-xl p-3.5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#044A9C]/40">
+                        <button type="button" data-method="auto" aria-pressed="true"
+                            class="method-btn rounded-xl p-3.5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#044A9C]/40">
                             <span class="flex items-center gap-2">
-                                <span class="icon-box grid h-8 w-8 place-items-center rounded-lg"><svg aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span>
+                                <span class="icon-box grid h-8 w-8 place-items-center rounded-lg"><svg
+                                        aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M13 2 4 14h7l-1 8 9-12h-7z" />
+                                    </svg></span>
                                 <span class="text-sm font-semibold text-slate-900">Otomatis</span>
                             </span>
-                            <span class="mt-2 block text-[11px] leading-4 text-slate-500">Virtual Account, QRIS, e-wallet via Midtrans</span>
+                            <span class="mt-2 block text-[11px] leading-4 text-slate-500">Virtual Account, QRIS,
+                                e-wallet via Midtrans</span>
                         </button>
-                        <button type="button" data-method="manual" aria-pressed="false" class="method-btn rounded-xl p-3.5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#044A9C]/40">
+                        <button type="button" data-method="manual" aria-pressed="false"
+                            class="method-btn rounded-xl p-3.5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#044A9C]/40">
                             <span class="flex items-center gap-2">
-                                <span class="icon-box grid h-8 w-8 place-items-center rounded-lg"><svg aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2zM16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></span>
+                                <span class="icon-box grid h-8 w-8 place-items-center rounded-lg"><svg
+                                        aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M4 7h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2zM16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+                                    </svg></span>
                                 <span class="text-sm font-semibold text-slate-900">Manual</span>
                             </span>
-                            <span class="mt-2 block text-[11px] leading-4 text-slate-500">Transfer atau cash, dikonfirmasi panitia</span>
+                            <span class="mt-2 block text-[11px] leading-4 text-slate-500">Transfer atau cash,
+                                dikonfirmasi panitia</span>
                         </button>
                     </div>
 
                     {{-- Keterangan Otomatis --}}
                     <p id="note-auto" class="mt-3 flex items-start gap-2 text-xs leading-5 text-slate-500">
-                        <svg aria-hidden="true" class="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#044A9C]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+                        <svg aria-hidden="true" class="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#044A9C]" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" />
+                            <path d="M9 12l2 2 4-4" />
+                        </svg>
                         Aman lewat Midtrans. Pembayaran terkonfirmasi otomatis tanpa menunggu persetujuan manual.
                     </p>
 
@@ -319,30 +491,40 @@
                     <div id="manual-options" class="mt-4 hidden">
                         <p class="mb-2 text-xs font-medium text-slate-600">Bayar dengan</p>
                         <div class="grid grid-cols-2 gap-3" role="group" aria-label="Jenis pembayaran manual">
-                            <button type="button" data-sub="transfer" aria-pressed="true" class="sub-btn rounded-lg px-4 py-3 text-left text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#044A9C]/40">
+                            <button type="button" data-sub="transfer" aria-pressed="true"
+                                class="sub-btn rounded-lg px-4 py-3 text-left text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#044A9C]/40">
                                 Transfer Bank
-                                <span class="mt-0.5 block text-[11px] font-normal text-slate-500">Ke rekening BCA panitia</span>
+                                <span class="mt-0.5 block text-[11px] font-normal text-slate-500">Ke rekening BCA
+                                    panitia</span>
                             </button>
-                            <button type="button" data-sub="cash" aria-pressed="false" class="sub-btn rounded-lg px-4 py-3 text-left text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#044A9C]/40">
+                            <button type="button" data-sub="cash" aria-pressed="false"
+                                class="sub-btn rounded-lg px-4 py-3 text-left text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#044A9C]/40">
                                 Tunai / Cash
-                                <span class="mt-0.5 block text-[11px] font-normal text-slate-500">Bayar ke meja panitia</span>
+                                <span class="mt-0.5 block text-[11px] font-normal text-slate-500">Bayar ke meja
+                                    panitia</span>
                             </button>
                         </div>
 
                         {{-- Hanya untuk Transfer --}}
                         <div id="transfer-fields">
-                            <p class="mt-3 text-xs leading-5 text-slate-500">Detail nomor rekening dan panduan konfirmasi transfer akan tertera pada saat checkout pendaftaran disubmit.</p>
+                            <p class="mt-3 text-xs leading-5 text-slate-500">Detail nomor rekening dan panduan
+                                konfirmasi transfer akan tertera pada saat checkout pendaftaran disubmit.</p>
                         </div>
 
-                        <p class="mt-3 text-xs leading-5 text-slate-500">Pembayaran manual akan diverifikasi oleh panitia lomba.</p>
+                        <p class="mt-3 text-xs leading-5 text-slate-500">Pembayaran manual akan diverifikasi oleh
+                            panitia lomba.</p>
                     </div>
 
                     {{-- Voucher --}}
                     <div class="mt-5">
-                        <label for="payment-voucher" class="mb-2 block text-sm font-medium text-slate-700">Kode Voucher / Promo</label>
+                        <label for="payment-voucher" class="mb-2 block text-sm font-medium text-slate-700">Kode Voucher
+                            / Promo</label>
                         <div class="flex gap-2">
-                            <input id="payment-voucher" name="voucher" type="text" placeholder="Masukkan kode kupon jika ada" class="min-w-0 flex-1 rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#044A9C] focus:outline-none focus:ring-2 focus:ring-[#044A9C]/20 uppercase">
-                            <button type="button" id="btn-apply-voucher" class="rounded-lg border border-[#044A9C] bg-white px-4 py-3 text-sm font-semibold text-[#044A9C] hover:bg-blue-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#044A9C]/40 transition">Terapkan</button>
+                            <input id="payment-voucher" name="voucher" type="text"
+                                placeholder="Masukkan kode kupon jika ada"
+                                class="min-w-0 flex-1 rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#044A9C] focus:outline-none focus:ring-2 focus:ring-[#044A9C]/20 uppercase">
+                            <button type="button" id="btn-apply-voucher"
+                                class="rounded-lg border border-[#044A9C] bg-white px-4 py-3 text-sm font-semibold text-[#044A9C] hover:bg-blue-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#044A9C]/40 transition">Terapkan</button>
                         </div>
                     </div>
 
@@ -350,20 +532,28 @@
                     <div class="mt-6 rounded-xl border border-slate-200 bg-slate-50 p-5">
                         <div class="mb-4 flex items-center justify-between">
                             <h4 class="text-sm font-semibold text-slate-800">Rincian Pembayaran</h4>
-                            <span id="summary-count-badge" class="text-xs font-semibold text-[#044A9C] bg-blue-100/70 px-2 py-0.5 rounded">1 {{ $isTeam ? 'tim' : 'peserta' }}</span>
+                            <span id="summary-count-badge"
+                                class="text-xs font-semibold text-[#044A9C] bg-blue-100/70 px-2 py-0.5 rounded">1
+                                {{ $isTeam ? 'tim' : 'peserta' }}</span>
                         </div>
                         <dl class="space-y-3 text-sm">
                             <div class="flex justify-between gap-4 text-slate-500">
-                                <dt id="summary-item-label">Biaya pendaftaran ({{ $competition['name'] ?? 'Lomba' }})</dt>
-                                <dd id="summary-item-price" class="font-semibold text-slate-900">{{ $unitPriceFormatted }}</dd>
+                                <dt id="summary-item-label">Biaya pendaftaran ({{ $competition['name'] ?? 'Lomba' }})
+                                </dt>
+                                <dd id="summary-item-price" class="font-semibold text-slate-900">
+                                    {{ $unitPriceFormatted }}
+                                </dd>
                             </div>
                             <div class="flex justify-between gap-4 text-slate-500">
                                 <dt>Biaya Layanan & Pajak</dt>
                                 <dd class="font-semibold text-slate-900">Rp0</dd>
                             </div>
-                            <div class="flex items-center justify-between gap-4 border-t border-dashed border-slate-300 pt-4 text-base font-bold">
+                            <div
+                                class="flex items-center justify-between gap-4 border-t border-dashed border-slate-300 pt-4 text-base font-bold">
                                 <dt class="text-slate-900">Total Pembayaran</dt>
-                                <dd id="summary-total-price" class="text-xl font-black text-[#044A9C]">{{ $unitPriceFormatted }}</dd>
+                                <dd id="summary-total-price" class="text-xl font-black text-[#044A9C]">
+                                    {{ $unitPriceFormatted }}
+                                </dd>
                             </div>
                         </dl>
                     </div>
@@ -376,69 +566,141 @@
                         <div id="hidden-participant-inputs"></div>
                     </form>
 
-                    <button type="submit" form="payment-form" class="mt-7 flex w-full items-center justify-center gap-2 rounded-xl bg-[#044A9C] px-5 py-4 text-sm font-bold text-white transition hover:bg-[#033a7c] focus:outline-none focus:ring-2 focus:ring-[#044A9C] focus:ring-offset-2 shadow-lg shadow-[#044A9C]/25 cursor-pointer">
-                        <svg aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                    <button type="submit" form="payment-form"
+                        class="mt-7 flex w-full items-center justify-center gap-2 rounded-xl bg-[#044A9C] px-5 py-4 text-sm font-bold text-white transition hover:bg-[#033a7c] focus:outline-none focus:ring-2 focus:ring-[#044A9C] focus:ring-offset-2 shadow-lg shadow-[#044A9C]/25 cursor-pointer">
+                        <svg aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="4" y="11" width="16" height="10" rx="2" />
+                            <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+                        </svg>
                         <span id="pay-label">Bayar Sekarang</span>
                     </button>
-                    <p id="payment-error" role="alert" class="mt-3 hidden rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"></p>
+                    <p id="payment-error" role="alert"
+                        class="mt-3 hidden rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                    </p>
 
-                    <ul class="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[11px] text-slate-500">
-                        <li class="inline-flex items-center gap-1.5"><svg aria-hidden="true" class="h-3.5 w-3.5 text-[#044A9C]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>Dienkripsi SSL</li>
-                        <li class="inline-flex items-center gap-1.5"><svg aria-hidden="true" class="h-3.5 w-3.5 text-[#044A9C]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg><span id="trust-confirm">Konfirmasi instan</span></li>
-                        <li class="inline-flex items-center gap-1.5"><svg aria-hidden="true" class="h-3.5 w-3.5 text-[#044A9C]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Pembayaran Resmi SRC 2026</li>
+                    <ul
+                        class="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[11px] text-slate-500">
+                        <li class="inline-flex items-center gap-1.5"><svg aria-hidden="true"
+                                class="h-3.5 w-3.5 text-[#044A9C]" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" />
+                                <path d="M9 12l2 2 4-4" />
+                            </svg>Dienkripsi SSL</li>
+                        <li class="inline-flex items-center gap-1.5"><svg aria-hidden="true"
+                                class="h-3.5 w-3.5 text-[#044A9C]" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M13 2 4 14h7l-1 8 9-12h-7z" />
+                            </svg><span id="trust-confirm">Konfirmasi instan</span></li>
+                        <li class="inline-flex items-center gap-1.5"><svg aria-hidden="true"
+                                class="h-3.5 w-3.5 text-[#044A9C]" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="11" width="18" height="10" rx="2" />
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                            </svg>Pembayaran Resmi SRC 2026</li>
                     </ul>
 
-                    <p class="mt-4 text-center text-xs leading-5 text-slate-500">Dengan melakukan pendaftaran & pembayaran, Anda menyetujui <a href="#" class="text-[#044A9C] underline underline-offset-2 hover:text-[#033a7c]">syarat &amp; ketentuan</a> lomba.</p>
+                    <p class="mt-4 text-center text-xs leading-5 text-slate-500">Dengan melakukan pendaftaran &
+                        pembayaran, Anda menyetujui <a href="#"
+                            class="text-[#044A9C] underline underline-offset-2 hover:text-[#033a7c]">syarat &amp;
+                            ketentuan</a> lomba.</p>
                 </div>
             </div>
         </div>
     </section>
 
     {{-- ======================================================== --}}
-    {{-- FASE 3: MODAL KONFIRMASI PEMBAYARAN                      --}}
+    {{-- FASE 3: MODAL KONFIRMASI PEMBAYARAN --}}
     {{-- ======================================================== --}}
-    <div id="approval-modal" class="fixed inset-0 z-[100] hidden items-center justify-center overflow-y-auto bg-slate-950/50 p-4 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="approval-title" aria-hidden="true">
-        <div class="relative my-auto w-full max-w-lg overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-2xl shadow-slate-950/20">
+    <div id="approval-modal"
+        class="fixed inset-0 z-[100] hidden items-center justify-center overflow-y-auto bg-slate-950/50 p-4 backdrop-blur-sm"
+        role="dialog" aria-modal="true" aria-labelledby="approval-title" aria-hidden="true">
+        <div
+            class="relative my-auto w-full max-w-lg overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-2xl shadow-slate-950/20">
             <div class="h-2 w-full bg-gradient-to-r from-[#0A5CBA] via-[#044A9C] to-[#033777]"></div>
             <div class="p-6 sm:p-8">
                 <div class="flex justify-end -mt-2 -mr-2">
-                    <button type="button" data-close-approval aria-label="Tutup" class="grid h-10 w-10 place-items-center rounded-full text-slate-400 transition hover:bg-slate-100 hover:text-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#044A9C]">
-                        <svg aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12" /></svg>
+                    <button type="button" data-close-approval aria-label="Tutup"
+                        class="grid h-10 w-10 place-items-center rounded-full text-slate-400 transition hover:bg-slate-100 hover:text-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#044A9C]">
+                        <svg aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round">
+                            <path d="M18 6 6 18M6 6l12 12" />
+                        </svg>
                     </button>
                 </div>
 
                 <div class="text-center">
-                    <div id="approval-pending-icon" class="relative mx-auto grid h-20 w-20 place-items-center rounded-full bg-blue-50 text-[#044A9C] ring-8 ring-blue-50/60">
-                        <svg class="h-10 w-10 animate-spin-slow text-blue-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-6.219-8.56" /></svg>
-                        <svg class="absolute h-7 w-7 text-[#044A9C]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8m-8 4h8"/></svg>
+                    <div id="approval-pending-icon"
+                        class="relative mx-auto grid h-20 w-20 place-items-center rounded-full bg-blue-50 text-[#044A9C] ring-8 ring-blue-50/60">
+                        <svg class="h-10 w-10 animate-spin-slow text-blue-200" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                            <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+                        </svg>
+                        <svg class="absolute h-7 w-7 text-[#044A9C]" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <path d="M14 2v6h6M8 13h8m-8 4h8" />
+                        </svg>
                     </div>
-                    <div id="approval-success-icon" class="mx-auto hidden h-20 w-20 place-items-center rounded-full bg-emerald-50 text-emerald-600 ring-8 ring-emerald-50/60">
-                        <svg class="h-11 w-11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                    <div id="approval-success-icon"
+                        class="mx-auto hidden h-20 w-20 place-items-center rounded-full bg-emerald-50 text-emerald-600 ring-8 ring-emerald-50/60">
+                        <svg class="h-11 w-11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                            <path d="m9 11 3 3L22 4" />
+                        </svg>
                     </div>
-                    <h2 id="approval-title" class="mt-7 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Menyiapkan konfirmasi</h2>
+                    <h2 id="approval-title" class="mt-7 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+                        Menyiapkan konfirmasi</h2>
                     <p id="approval-message" class="mt-3 text-sm leading-relaxed text-slate-500 sm:text-base"></p>
-                    <div id="approval-countdown-wrap" class="mt-5 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 py-2">
-                        <span class="relative flex h-2.5 w-2.5"><span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75"></span><span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#044A9C]"></span></span>
-                        <span id="approval-countdown" aria-live="polite" class="text-xs font-semibold tracking-wide text-[#044A9C]"></span>
+                    <div id="approval-countdown-wrap"
+                        class="mt-5 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 py-2">
+                        <span class="relative flex h-2.5 w-2.5"><span
+                                class="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75"></span><span
+                                class="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#044A9C]"></span></span>
+                        <span id="approval-countdown" aria-live="polite"
+                            class="text-xs font-semibold tracking-wide text-[#044A9C]"></span>
                     </div>
                 </div>
 
-                <section aria-labelledby="approval-details-title" class="mt-7 overflow-hidden rounded-xl border border-slate-200 bg-slate-50 text-left">
+                <section aria-labelledby="approval-details-title"
+                    class="mt-7 overflow-hidden rounded-xl border border-slate-200 bg-slate-50 text-left">
                     <div class="flex items-center justify-between border-b border-slate-200 bg-slate-100/70 px-5 py-3">
-                        <h3 id="approval-details-title" class="text-xs font-bold uppercase tracking-wider text-slate-500">Rincian Transaksi</h3>
+                        <h3 id="approval-details-title"
+                            class="text-xs font-bold uppercase tracking-wider text-slate-500">Rincian Transaksi</h3>
                         <span class="text-[10px] text-slate-400">ID: <span id="approval-reference">—</span></span>
                     </div>
                     <dl class="space-y-4 px-5 py-4 text-sm">
-                        <div class="flex items-center justify-between gap-4"><dt class="text-slate-500">Tanggal</dt><dd id="approval-date" class="font-semibold text-slate-800"></dd></div>
-                        <div class="flex items-center justify-between gap-4"><dt class="text-slate-500">Metode</dt><dd id="approval-method" class="font-semibold text-slate-800"></dd></div>
-                        <div class="flex items-center justify-between gap-4"><dt class="text-slate-500">Status</dt><dd><span id="approval-status" class="inline-flex items-center gap-1.5 rounded-md bg-amber-50 px-2 py-1 text-xs font-semibold text-amber-700"><span id="approval-status-dot" class="h-2 w-2 rounded-full bg-amber-500"></span><span id="approval-status-text">Tertunda</span></span></dd></div>
-                        <div class="flex items-center justify-between gap-4 border-t border-dashed border-slate-300 pt-4"><dt class="font-semibold text-slate-900">Total biaya</dt><dd id="approval-amount" class="text-xl font-black text-[#044A9C]"></dd></div>
+                        <div class="flex items-center justify-between gap-4">
+                            <dt class="text-slate-500">Tanggal</dt>
+                            <dd id="approval-date" class="font-semibold text-slate-800"></dd>
+                        </div>
+                        <div class="flex items-center justify-between gap-4">
+                            <dt class="text-slate-500">Metode</dt>
+                            <dd id="approval-method" class="font-semibold text-slate-800"></dd>
+                        </div>
+                        <div class="flex items-center justify-between gap-4">
+                            <dt class="text-slate-500">Status</dt>
+                            <dd><span id="approval-status"
+                                    class="inline-flex items-center gap-1.5 rounded-md bg-amber-50 px-2 py-1 text-xs font-semibold text-amber-700"><span
+                                        id="approval-status-dot" class="h-2 w-2 rounded-full bg-amber-500"></span><span
+                                        id="approval-status-text">Tertunda</span></span></dd>
+                        </div>
+                        <div
+                            class="flex items-center justify-between gap-4 border-t border-dashed border-slate-300 pt-4">
+                            <dt class="font-semibold text-slate-900">Total biaya</dt>
+                            <dd id="approval-amount" class="text-xl font-black text-[#044A9C]"></dd>
+                        </div>
                     </dl>
                 </section>
 
-                <a href="{{ isset($competition['slug']) ? route('competitions.show', $competition['slug']) : route('home') }}" class="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-[#044A9C] px-5 py-3.5 text-sm font-bold text-white transition hover:bg-[#033777] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#044A9C] focus-visible:ring-offset-2">
+                <a href="{{ isset($competition['slug']) ? route('competitions.show', $competition['slug']) : route('home') }}"
+                    class="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-[#044A9C] px-5 py-3.5 text-sm font-bold text-white transition hover:bg-[#033777] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#044A9C] focus-visible:ring-offset-2">
                     Kembali ke halaman perlombaan
-                    <svg aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    <svg aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
                 </a>
             </div>
         </div>
@@ -489,24 +751,37 @@
                 var count = Math.max(1, Math.min(30, Number(countInput.value) || 1));
                 countInput.value = count;
 
+                // Batasi maksimal tampilan 2 card, jika lebih dari 2 gunakan scroll
+                if (count > 2) {
+                    fieldsContainer.className = 'mt-6 space-y-4 max-h-[520px] sm:max-h-[560px] overflow-y-auto pr-1.5 custom-scrollbar';
+                } else {
+                    fieldsContainer.className = 'mt-6 space-y-4';
+                }
+
                 // Collect existing values to prevent losing them during count change
                 var previous = [];
                 var cards = fieldsContainer.querySelectorAll('.participant-card');
                 cards.forEach(function (card) {
-                    var teamInput = card.querySelector('.team-name-input');
-                    var childInput = card.querySelector('.child-name-input');
-                    var schoolInput = card.querySelector('.school-name-input');
-                    previous.push({
-                        team_name: teamInput ? teamInput.value : '',
-                        child_name: childInput ? childInput.value : '',
-                        school_name: schoolInput ? schoolInput.value : ''
-                    });
+                    if (isTeam) {
+                        var teamInput = card.querySelector('.team-name-input');
+                        var child1Input = card.querySelector('.child1-name-input');
+                        var child2Input = card.querySelector('.child2-name-input');
+                        previous.push({
+                            team_name: teamInput ? teamInput.value : '',
+                            child_name_1: child1Input ? child1Input.value : '',
+                            child_name_2: child2Input ? child2Input.value : ''
+                        });
+                    } else {
+                        var childInput = card.querySelector('.child-name-input');
+                        previous.push({
+                            child_name: childInput ? childInput.value : ''
+                        });
+                    }
                 });
 
                 fieldsContainer.replaceChildren();
 
                 for (var i = 0; i < count; i++) {
-                    var data = previous[i] || { team_name: '', child_name: '', school_name: '' };
                     var card = document.createElement('fieldset');
                     card.className = 'participant-card rounded-xl border border-slate-200 bg-white p-4 sm:p-5 shadow-sm transition';
 
@@ -518,6 +793,8 @@
                     card.appendChild(legend);
 
                     if (isTeam) {
+                        var dataTeam = previous[i] || { team_name: '', child_name_1: '', child_name_2: '' };
+
                         // FIELD 1: Nama Tim
                         var wrapTeam = document.createElement('div');
                         wrapTeam.className = 'mt-3';
@@ -530,66 +807,67 @@
                         inputTeam.type = 'text';
                         inputTeam.required = true;
                         inputTeam.maxLength = 100;
-                        inputTeam.value = data.team_name || '';
+                        inputTeam.value = dataTeam.team_name || '';
                         inputTeam.placeholder = 'cth. RoboTech ' + (i + 1);
                         inputTeam.className = 'team-name-input w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 focus:border-[#044A9C] focus:outline-none focus:ring-2 focus:ring-[#044A9C]/20';
                         wrapTeam.append(labelTeam, inputTeam);
                         card.appendChild(wrapTeam);
 
-                        // FIELD 2: Nama Anak / Ketua
-                        var wrapChild = document.createElement('div');
-                        wrapChild.className = 'mt-3';
-                        var labelChild = document.createElement('label');
-                        labelChild.className = 'mb-1.5 block text-xs sm:text-sm font-semibold text-slate-700';
-                        labelChild.textContent = 'Nama Lengkap Anak / Ketua Tim *';
-                        labelChild.htmlFor = 'child-name-' + i;
-                        var inputChild = document.createElement('input');
-                        inputChild.id = 'child-name-' + i;
-                        inputChild.type = 'text';
-                        inputChild.required = true;
-                        inputChild.maxLength = 100;
-                        inputChild.value = data.child_name || '';
-                        inputChild.placeholder = 'cth. Muhammad Farhan';
-                        inputChild.className = 'child-name-input w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 focus:border-[#044A9C] focus:outline-none focus:ring-2 focus:ring-[#044A9C]/20';
-                        wrapChild.append(labelChild, inputChild);
-                        card.appendChild(wrapChild);
+                        // FIELD 2: Nama Anak 1
+                        var wrapChild1 = document.createElement('div');
+                        wrapChild1.className = 'mt-3';
+                        var labelChild1 = document.createElement('label');
+                        labelChild1.className = 'mb-1.5 block text-xs sm:text-sm font-semibold text-slate-700';
+                        labelChild1.textContent = 'Nama Lengkap Anak 1 *';
+                        labelChild1.htmlFor = 'child1-name-' + i;
+                        var inputChild1 = document.createElement('input');
+                        inputChild1.id = 'child1-name-' + i;
+                        inputChild1.type = 'text';
+                        inputChild1.required = true;
+                        inputChild1.maxLength = 100;
+                        inputChild1.value = dataTeam.child_name_1 || '';
+                        inputChild1.placeholder = 'cth. Muhammad Farhan';
+                        inputChild1.className = 'child1-name-input w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 focus:border-[#044A9C] focus:outline-none focus:ring-2 focus:ring-[#044A9C]/20';
+                        wrapChild1.append(labelChild1, inputChild1);
+                        card.appendChild(wrapChild1);
+
+                        // FIELD 3: Nama Anak 2
+                        var wrapChild2 = document.createElement('div');
+                        wrapChild2.className = 'mt-3';
+                        var labelChild2 = document.createElement('label');
+                        labelChild2.className = 'mb-1.5 block text-xs sm:text-sm font-semibold text-slate-700';
+                        labelChild2.textContent = 'Nama Lengkap Anak 2 *';
+                        labelChild2.htmlFor = 'child2-name-' + i;
+                        var inputChild2 = document.createElement('input');
+                        inputChild2.id = 'child2-name-' + i;
+                        inputChild2.type = 'text';
+                        inputChild2.required = true;
+                        inputChild2.maxLength = 100;
+                        inputChild2.value = dataTeam.child_name_2 || '';
+                        inputChild2.placeholder = 'cth. Rizky Pratama';
+                        inputChild2.className = 'child2-name-input w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 focus:border-[#044A9C] focus:outline-none focus:ring-2 focus:ring-[#044A9C]/20';
+                        wrapChild2.append(labelChild2, inputChild2);
+                        card.appendChild(wrapChild2);
                     } else {
-                        // INDIVIDU
-                        // FIELD 1: Nama Lengkap Anak / Peserta
+                        // INDIVIDU: Hanya Nama Anak
+                        var dataIndiv = previous[i] || { child_name: '' };
+
                         var wrapChildIndiv = document.createElement('div');
                         wrapChildIndiv.className = 'mt-3';
                         var labelChildIndiv = document.createElement('label');
                         labelChildIndiv.className = 'mb-1.5 block text-xs sm:text-sm font-semibold text-slate-700';
-                        labelChildIndiv.textContent = 'Nama Lengkap Peserta *';
+                        labelChildIndiv.textContent = 'Nama Lengkap Anak *';
                         labelChildIndiv.htmlFor = 'child-name-' + i;
                         var inputChildIndiv = document.createElement('input');
                         inputChildIndiv.id = 'child-name-' + i;
                         inputChildIndiv.type = 'text';
                         inputChildIndiv.required = true;
                         inputChildIndiv.maxLength = 100;
-                        inputChildIndiv.value = data.child_name || '';
+                        inputChildIndiv.value = dataIndiv.child_name || '';
                         inputChildIndiv.placeholder = 'cth. Ahmad Fauzi';
                         inputChildIndiv.className = 'child-name-input w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 focus:border-[#044A9C] focus:outline-none focus:ring-2 focus:ring-[#044A9C]/20';
                         wrapChildIndiv.append(labelChildIndiv, inputChildIndiv);
                         card.appendChild(wrapChildIndiv);
-
-                        // FIELD 2: Asal Sekolah / Instansi
-                        var wrapSchool = document.createElement('div');
-                        wrapSchool.className = 'mt-3';
-                        var labelSchool = document.createElement('label');
-                        labelSchool.className = 'mb-1.5 block text-xs sm:text-sm font-semibold text-slate-700';
-                        labelSchool.textContent = 'Asal Sekolah / Instansi *';
-                        labelSchool.htmlFor = 'school-name-' + i;
-                        var inputSchool = document.createElement('input');
-                        inputSchool.id = 'school-name-' + i;
-                        inputSchool.type = 'text';
-                        inputSchool.required = true;
-                        inputSchool.maxLength = 100;
-                        inputSchool.value = data.school_name || data.team_name || '';
-                        inputSchool.placeholder = 'cth. SDN 1 Sukabumi / Edurobotik';
-                        inputSchool.className = 'school-name-input team-name-input w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 focus:border-[#044A9C] focus:outline-none focus:ring-2 focus:ring-[#044A9C]/20';
-                        wrapSchool.append(labelSchool, inputSchool);
-                        card.appendChild(wrapSchool);
                     }
 
                     fieldsContainer.appendChild(card);
@@ -615,20 +893,53 @@
                 var cards = fieldsContainer.querySelectorAll('.participant-card');
 
                 cards.forEach(function (card, i) {
-                    var teamInput = card.querySelector('.team-name-input');
-                    var childInput = card.querySelector('.child-name-input');
+                    if (isTeam) {
+                        var teamInput = card.querySelector('.team-name-input');
+                        var child1Input = card.querySelector('.child1-name-input');
+                        var child2Input = card.querySelector('.child2-name-input');
 
-                    var hTeam = document.createElement('input');
-                    hTeam.type = 'hidden';
-                    hTeam.name = 'teams[' + i + '][team_name]';
-                    hTeam.value = teamInput ? teamInput.value : (isTeam ? 'Tim ' + (i + 1) : 'Peserta ' + (i + 1));
+                        var teamVal = (teamInput && teamInput.value.trim()) ? teamInput.value.trim() : ('Tim ' + (i + 1));
+                        var child1Val = (child1Input && child1Input.value.trim()) ? child1Input.value.trim() : '';
+                        var child2Val = (child2Input && child2Input.value.trim()) ? child2Input.value.trim() : '';
+                        var combinedChildren = [child1Val, child2Val].filter(Boolean).join(', ');
 
-                    var hChild = document.createElement('input');
-                    hChild.type = 'hidden';
-                    hChild.name = 'teams[' + i + '][child_name]';
-                    hChild.value = childInput ? childInput.value : '';
+                        var hTeam = document.createElement('input');
+                        hTeam.type = 'hidden';
+                        hTeam.name = 'teams[' + i + '][team_name]';
+                        hTeam.value = teamVal;
 
-                    hiddenInputsContainer.append(hTeam, hChild);
+                        var hChild1 = document.createElement('input');
+                        hChild1.type = 'hidden';
+                        hChild1.name = 'teams[' + i + '][child_name_1]';
+                        hChild1.value = child1Val;
+
+                        var hChild2 = document.createElement('input');
+                        hChild2.type = 'hidden';
+                        hChild2.name = 'teams[' + i + '][child_name_2]';
+                        hChild2.value = child2Val;
+
+                        var hChild = document.createElement('input');
+                        hChild.type = 'hidden';
+                        hChild.name = 'teams[' + i + '][child_name]';
+                        hChild.value = combinedChildren;
+
+                        hiddenInputsContainer.append(hTeam, hChild1, hChild2, hChild);
+                    } else {
+                        var childInput = card.querySelector('.child-name-input');
+                        var childVal = (childInput && childInput.value.trim()) ? childInput.value.trim() : '';
+
+                        var hTeam = document.createElement('input');
+                        hTeam.type = 'hidden';
+                        hTeam.name = 'teams[' + i + '][team_name]';
+                        hTeam.value = childVal || ('Peserta ' + (i + 1));
+
+                        var hChild = document.createElement('input');
+                        hChild.type = 'hidden';
+                        hChild.name = 'teams[' + i + '][child_name]';
+                        hChild.value = childVal;
+
+                        hiddenInputsContainer.append(hTeam, hChild);
+                    }
                 });
             }
 
@@ -960,4 +1271,5 @@
         })();
     </script>
 </body>
+
 </html>
